@@ -1,4 +1,5 @@
 🔧 GearGuard – Maintenance Tracker (Project Overview)
+
 🧠 Problem We Are Solving
 
 In many organizations, equipment maintenance is handled informally.
