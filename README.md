@@ -1,4 +1,4 @@
-GearGuard – Maintenance Tracker (Project Overview)
+🔧 GearGuard – Maintenance Tracker (Project Overview)
 🧠 Problem We Are Solving
 
 In many organizations, equipment maintenance is handled informally.
@@ -35,3 +35,15 @@ Preventive tasks appear on a calendar
 Technicians track work using a Kanban board
 
 All data is handled using real-time backend APIs and a database, not static JSON files.
+
+✅ Key Highlights
+
+Real-time data using APIs
+
+Automatic team assignment based on equipment
+
+Visual tracking with Kanban & Calendar views
+
+Clear responsibility and maintenance history
+
+Clean and simple user flow
