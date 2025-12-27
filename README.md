@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🔧 GearGuard – Maintenance Tracker (Project Overview)
 
-## Getting Started
+🧠 Problem We Are Solving
 
-First, run the development server:
+In many organizations, equipment maintenance is handled informally.
+Breakdowns are reported late, responsibilities are unclear, and maintenance history is lost.
+This leads to delays, poor tracking, and inefficient repairs.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🎯 Our Goal
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To build a simple maintenance management system that connects:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Equipment (what needs maintenance)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Teams (who will fix it)
 
-## Learn More
+Requests (what work needs to be done)
 
-To learn more about Next.js, take a look at the following resources:
+💡 Our Solution – GearGuard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GearGuard is a centralized web application that helps manage equipment and maintenance work in a structured way.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All equipment is registered with its details and assigned maintenance team
 
-## Deploy on Vercel
+Users can raise maintenance requests for:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Breakdowns (Corrective)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Routine checkups (Preventive)
+
+Requests move through clear stages:
+New → In Progress → Repaired / Scrap
+
+Preventive tasks appear on a calendar
+
+Technicians track work using a Kanban board
+
+All data is handled using real-time backend APIs and a database, not static JSON files.
+
+✅ Key Highlights
+
+Real-time data using APIs
+
+Automatic team assignment based on equipment
+
+Visual tracking with Kanban & Calendar views
+
+Clear responsibility and maintenance history
+
+Clean and simple user flow
