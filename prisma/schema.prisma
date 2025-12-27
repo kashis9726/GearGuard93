@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String   // In a real app, hash this!
+  role      String   // Admin, Manager, Technician, Employee
+  
+  // Relations
+  teamId    String?
+  team      Team?    @relation(fields: [teamId], references: [id])
+  
+  assignedRequests MaintenanceRequest[] @relation("AssignedTechnician")
+  createdRequests  MaintenanceRequest[] @relation("CreatedBy")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Team {
+  id          String   @id @default(uuid())
+  name        String   // e.g. IT Support, Mechanical, Electrical
+  description String?
+  
+  members     User[]
+  defaultForEquipment Equipment[]
+  requests    MaintenanceRequest[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Equipment {
+  id            String   @id @default(uuid())
+  name          String
+  serialNumber  String   @unique
+  category      String   // e.g. Electronics, Machinery, Vehicle
+  department    String   // e.g. Production, IT, HR
+  location      String
+  purchaseDate  DateTime?
+  warrantyEnd   DateTime?
+  status        String   @default("ACTIVE") // ACTIVE, SCRAPPED, MAINTENANCE
+  
+  // Ownership/Responsibility
+  assignedToEmployee String? // Name of employee responsible
+  
+  defaultTeamId String?
+  defaultTeam   Team?   @relation(fields: [defaultTeamId], references: [id])
+  
+  requests      MaintenanceRequest[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MaintenanceRequest {
+  id          String   @id @default(uuid())
+  subject     String
+  description String?
+  
+  type        String   // CORRECTIVE, PREVENTIVE
+  status      String   @default("NEW") // NEW, IN_PROGRESS, REPAIRED, SCRAP
+  
+  // Relations
+  equipmentId String
+  equipment   Equipment @relation(fields: [equipmentId], references: [id])
+  
+  teamId      String?
+  team        Team?     @relation(fields: [teamId], references: [id])
+  
+  createdById String?
+  createdBy   User?     @relation("CreatedBy", fields: [createdById], references: [id])
+  
+  assignedToId String?
+  assignedTo   User?    @relation("AssignedTechnician", fields: [assignedToId], references: [id])
+  
+  // Workflow fields
+  scheduledDate DateTime? // For Preventive
+  completedDate DateTime?
+  durationHours Float?
+  
+  priority    String    @default("MEDIUM")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
